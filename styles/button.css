@@ -1,0 +1,150 @@
+button {
+    width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    margin: 0 3px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: bold;
+    color: #666;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+button.act,
+button:active {
+    transform: translateY(3px);
+}
+
+button,
+.label,
+.handle {
+    transition: all .15s;
+}
+
+/* count button */
+#count-btn {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border-radius: 12px;
+    background: #A1A1A1;
+    color: white;
+}
+
+#count-btn .material-icons {
+    font-size: 16px;
+}
+
+#count-btn.play {
+    background: #4273D2;
+}
+
+/* toggle button */
+#toggle-btn {
+    position: relative;
+    width: 200px;
+    border-radius: 20px;
+    color: #A1A1A1;
+}
+
+#toggle-btn.act,
+#toggle-btn:active {
+    transform: none;
+}
+
+#toggle-btn.act {
+    color: #4273D2;
+}
+
+#toggle-btn .label {
+    position: absolute;
+    top: 50%;
+    left: 54px;
+    width: 140px;
+    transform: translateY(-50%);
+}
+
+#toggle-btn.act .label {
+    left: 4px;
+}
+
+#toggle-btn .handle {
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: currentColor;
+    box-shadow: inherit;
+}
+
+#toggle-btn.act .handle {
+    left: 145px;
+}
+
+/* restart button */ 
+#restart-btn {
+    width: 90px;
+}
+
+/* new button */ 
+#new-btn {
+    width: 90px;
+    color: white;
+    background: #4273D2;
+}
+
+#start-option {
+    display: none;
+}
+
+#start-option.show {
+    display: block;
+}
+
+#start-option .label {
+    display: block;
+    width: 130px;
+    height: 30px;
+    margin: 15px 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+#start-option .label:hover,
+#start-option .label.act {
+    color: white;
+    background: #4273D2;
+}
+
+
+/* game key */
+.key:hover {
+    background: #eee;
+}
+
+.key.act,
+.key:active {
+    color: white;
+}
+
+.num:active,
+.num.act {
+    background: #4273D2;
+}
+
+#del-key {
+    width: 90px;
+}
+
+#del-key:active,
+#del-key.act {
+    background: #A1A1A1;
+}

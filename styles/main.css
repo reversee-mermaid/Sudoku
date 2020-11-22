@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+.inner {
+    width: 450px;
+    height: inherit;
+    margin: auto;
+}
+
+/* header */
+#title {
+    margin: 4rem;
+    text-align: center;
+}
+
+
+/* container - game option*/
+#game-stats {
+    text-align: right;
+    font-weight: bold;
+}
+#level {
+    padding: 0 10px;
+    color: #9CBAF4;
+    text-transform: capitalize;
+}
+
+#options {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#start-option {
+    position: absolute;
+    right: -190px;
+    top: -20px;
+    padding: 5px 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+}
+
+/* container - game key */
+#game-key {
+    text-align: right;
+}
+
+#nums {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
