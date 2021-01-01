@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ajax -->
+    <!-- axios를 사용하여 sudoku generator api에서 data 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let Sudoku = {
+            question: null,
+            answer: null
+        }
+
+        getSudoku().then(() => {
+            for (const key in Sudoku) {
+                document.write(`${key} : ${JSON.stringify(Sudoku[key])}<br>`)
+            }
+        });
+
+        async function getSudoku() {
+            Sudoku.question = await getQuestion().then(res => res.data.board);
+            Sudoku.answer = await getAnswer(Sudoku.question).then(res => res.data.solution)
+        }
+
+        function getQuestion() {
+            const url = 'https://sugoku.herokuapp.com/board?difficulty=easy';
+            return axios.get(url)
+        }
+
+        function getAnswer(q) {
+            const url = 'https://sugoku.herokuapp.com/solve';
+            return axios({
+                method: 'POST',
+                url: url,
+                data: convert(q)
+            })
+        }
+
+        function convert(board) {
+            const data = {
+                board: JSON.stringify(board)
+            }
+
+            let result = [];
+            for (const key in data) {
+                if (data.hasOwnProperty(key)) {
+                    result.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+                }
+            }
+            return result.join('&')
+        }
+    </script>
+</body>
+
+</html>

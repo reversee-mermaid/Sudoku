@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px solid;
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        tr:nth-of-type(3n):not(:last-of-type) {
+            border-bottom: 2px solid;
+        }
+        
+        td:nth-of-type(3n):not(:last-of-type) {
+            border-right: 2px solid;
+        }
+    </style>
+</head>
+<body>
+    <table id="board"></table>
+
+    <script>
+        const board_container = document.getElementById('board');
+        const arr = [
+            [0, 0, 7, 8, 0, 0, 2, 3, 0],
+            [0, 2, 3, 4, 5, 0, 6, 8, 0],
+            [0, 6, 0, 0, 3, 9, 0, 0, 7],
+            [2, 1, 0, 0, 7, 0, 8, 0, 0],
+            [0, 7, 0, 6, 0, 0, 0, 0, 0],
+            [6, 8, 9, 0, 0, 0, 3, 0, 0],
+            [5, 0, 0, 0, 4, 0, 9, 0, 0],
+            [0, 4, 6, 9, 0, 3, 5, 0, 0],
+            [0, 9, 0, 0, 0, 6, 7, 4, 3]
+        ];
+
+        arr.forEach((row, row_i) => {
+            const tr = document.createElement('tr');
+ 
+            row.forEach((cell, column_i) => {
+                const obj = {
+                    value: cell,
+                    row: row_i,
+                    column: column_i,
+                    grid: parseInt(row_i / 3) * 3 + parseInt(column_i / 3)
+                };
+                tr.append(createTd(obj));
+            })
+
+            board_container.append(tr);
+        })                
+
+        function createTd(obj) {
+            const td = document.createElement('td');
+            td.innerText = obj.value || null;
+            td.dataset.row = obj.row + 1;
+            td.dataset.column = obj.column + 1;
+            td.dataset.grid = obj.grid + 1;
+
+            return td;
+        }
+    </script>
+</body>
+</html>
