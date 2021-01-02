@@ -1,77 +1,49 @@
-class Cell {
-    constructor(selected) {
-        this.cell = selected;
-        this.editable = selected.classList.contains('editable');
+function clearHighlight() {
+    document.querySelectorAll('td').forEach(td => {
+        td.classList.remove('selected');
+        td.classList.remove('equal');
+        td.classList.remove('range');
+    })
+}
 
-        this.highlighting()
-    }
+export function highlighting() {
+    clearHighlight();
 
-    clearPrevious() {
-        Helper.qsa('.cell').forEach(cell => {
-            Helper.removeClass(cell, 'selected')
-            Helper.removeClass(cell, 'range')
-            Helper.removeClass(cell, 'equal')
-        })
-    }
+    this.classList.add('selected');
 
-    highlighting() {
-        const selected = this.cell;
-        
-        this.clearPrevious();
-        
-        Helper.addClass(selected, 'selected');
-        this.getRange(selected).forEach(range => Helper.addClass(range, 'range'));
-        this.getEqual(selected).forEach(equal => Helper.addClass(equal, 'equal'))
+    getEqual(this).forEach(equal => {
+        equal.classList.add('equal')
+    });
 
-        Helper.qsa('.cell').forEach(cell => {
-            const value = cell.textContent;
-            const range = this.getRange(cell);
+    getRange(this).forEach(range => {
+        range.classList.add('range')
+    })
+}
 
-            if(!value) {
-                Helper.removeClass(cell, 'wrong');
+function getEqual(selected) {
+    let res = [];
+    document.querySelectorAll('td').forEach(td => {
+        if(td == selected) return; 
+        if(td.innerText && td.innerText == selected.innerText) {
+            res.push(td);
+            return;
+        }
+    })
+    return res;
+}
 
-            } else if(range.find(r => r.textContent == value) == undefined){
-                Helper.removeClass(cell, 'wrong');
-
-            } else {
-                Helper.addClass(cell, 'wrong');
-            }
-        })
-    }
-
-    updateValue(num) {
-        this.cell.textContent = num;
-        this.highlighting();
-    }
-
-    getRange(el) {
-        let range = [];
-
-        Helper.qsa('.cell').forEach(cell => {
-            if(cell == el) return;
-
-            for(const [key, value] of Object.entries(cell.dataset)) {
-                if(el.dataset[key] == value) {
-                    range.push(cell);
-                    return;
-                }
-            }
-        })
-
-        return range;
-    }
-
-    getEqual(el) {
-        let equal = [];
-
-        Helper.qsa('.cell').forEach(cell => {
-            if(!cell.textContent || cell == el) return;
-            if(cell.textContent == el.textContent) {
-                equal.push(cell);
+function getRange(selected) {
+    let res = [];
+    
+    document.querySelectorAll('td').forEach(td => {
+        if(td == selected) return;
+        for(const key in selected.dataset) {
+            if(td.dataset[key] == selected.dataset[key] ) {
+                res.push(td);
                 return;
             }
-        })
-        
-        return equal;
-    }
+        }
+    })
+
+    return res;
 }

@@ -1,5 +1,6 @@
 import { Board } from './board.js';
-import { startCount, resetCount } from './count.js'
+import { startCount, resetCount } from './count.js';
+import { highlighting } from './cell.js';
 
 //set board
 export function setBoard() {
@@ -46,14 +47,21 @@ function clearBoard() {
                 column: column,
                 grid: parseInt(row / 3) * 3 + parseInt(column / 3)
             }
-
-            const td = document.createElement('td');
-            for (const key in dataset) {
-                td.dataset[key] = dataset[key] + 1;
-            }
             
-            tr.append(td);
+            tr.append(createTd(dataset));
         }
         container.append(tr)
     }
+}
+
+function createTd(dataset) {
+    const td = document.createElement('td');
+
+    for (const key in dataset) {
+        td.dataset[key] = dataset[key] + 1;
+    }
+
+    td.onclick = highlighting;
+
+    return td
 }
