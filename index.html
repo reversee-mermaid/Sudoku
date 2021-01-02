@@ -23,30 +23,23 @@
     </header>
 
     <!-- container -->
-    <section id="container">
+    <main id="container">
         <div class="inner">
             <!-- game option -->
-            <div id="game-option">
-                <div id="game-stats">
+            <div class="control_panel">
+                <div id="status">
                     <span id="level"></span>
                     <span id="count"></span>
                 </div>
-                <div id="options">
-                    <div>
-                        <button id="restart-btn">Restart</button>
-                        <button id="new-btn">New Game</button>
-                    </div>
-                    <div id="start-option">
-                        <button class="start-btn label">easy</button>
-                        <button class="start-btn label">normal</button>
-                        <button class="start-btn label">hard</button>
-                        <button class="start-btn label">test</button>
-                    </div>
+                <div id="generate">
+                    <button id="restart_btn">Restart</button>
+                    <button id="new_btn">New Game</button>
+                    <div id="level_panel"></div>
                 </div>
             </div>
 
             <!-- game board -->
-            <div id="game-board">
+            <div id="board_container">
                 <table id="board"></table>
                 <div id="complete_pop">
                     <h2>
@@ -56,17 +49,17 @@
                 </div>
             </div>
         </div>        
-    </section>
+    </main>
 
     <!-- footer -->
     <footer></footer>
     
-    <!-- <script src="./script/helper.js"></script> -->
+    <script src="./script/helper.js"></script>
     <!--<script src="./script/sudoku_list.js"></script> -->
     <!-- <script src="./script/sudoku.js"></script> -->
     <!-- <script src="./script/board.js"></script> -->
     <!-- <script src="./script/cell.js"></script> -->
-    <!-- <script type="module" src="./script/button_event.js"></script> -->
+    <script type="module" src="./script/button_event.js"></script>
     <!-- <script src="./script/keyup_event.js"></script> -->
     <script type="module" src="./script/main.js"></script>
 </body>

@@ -4,6 +4,28 @@
     box-sizing: border-box;
 }
 
+button {
+    padding: 0 10px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: #666;
+    font-weight: bold;
+    font-family: inherit;
+    text-transform: capitalize;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+    cursor: pointer;
+    transition: all .15s;
+}
+
+button.act,
+button:active {
+    transform: translateY(3px);
+}
+
 body {
     font-family: 'Nunito', sans-serif;
 }
@@ -20,19 +42,18 @@ body {
     text-align: center;
 }
 
-
-/* container - game option*/
-#game-stats {
+/* container - control panel*/
+#status {
     text-align: right;
     font-weight: bold;
 }
-#level {
+#status #level {
     padding: 0 10px;
     color: #9CBAF4;
     text-transform: capitalize;
 }
 
-#options {
+#generate {
     position: relative;
     display: flex;
     justify-content: flex-end;
@@ -40,7 +61,7 @@ body {
     margin-bottom: 20px;
 }
 
-#start-option {
+#level_panel {
     position: absolute;
     right: -190px;
     top: -20px;
@@ -48,14 +69,9 @@ body {
     background: white;
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .4);
+    display: none;
 }
 
-/* container - game key */
-#game-key {
-    text-align: right;
-}
-
-#nums {
-    margin-top: 20px;
-    margin-bottom: 20px;
+#level_panel.show {
+    display: block;
 }

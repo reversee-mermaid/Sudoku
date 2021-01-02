@@ -1,18 +1,40 @@
-const new_btn = Helper.id('new-btn');
-const restart_btn = Helper.id('restart-btn')
-const toggle_option = Helper.id('start-option');
-const start_btn_list = Helper.qsa('.start-btn');
+import { Sudoku } from './sudoku.js';
+import { resetBoard, setBoard } from './setup.js';
 
-new_btn.addEventListener('click', () =>  Helper.toggleClass(toggle_option, 'show'))
+const new_btn = Helper.id('new_btn');
+const restart_btn = Helper.id('restart_btn');
+const level_btn_panel = Helper.id('level_panel');
 
-start_btn_list.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const level = e.target.innerText.toLowerCase();
-        board = new Board(level);
-        Helper.removeClass(toggle_option, 'show')
-    })
-});
+const level_list = ['easy', 'medium', 'hard'];
 
-restart_btn.addEventListener('click', () => {
-    board.newGame();
+new_btn.onclick = () => {
+    Helper.toggleClass(level_btn_panel, 'show');
+};
+
+restart_btn.onclick = () => {
+    resetBoard();
+    setBoard();
+};
+
+level_list.forEach(level => {
+    level_btn_panel.append(createBtn(level))
 })
+
+function createBtn(level) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.innerText = level;
+    btn.dataset.level = level;
+    btn.classList.add('level_btn');
+
+    btn.onclick = newGame;
+
+    return btn;
+}
+
+function newGame() {
+    Helper.removeClass(level_btn_panel, 'show');
+    
+    resetBoard();
+    Sudoku.getBoard(this.dataset.level).then(setBoard);
+}
