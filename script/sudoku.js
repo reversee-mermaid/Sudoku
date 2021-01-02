@@ -1,12 +1,9 @@
-class Sudoku {
-    constructor(level) {
-        return this.getSudoku(level)
-    }
+import { Board } from './board.js';
 
-    getSudoku(level) {
-        const random = Math.floor(Math.random() * sudoku_list[level].length);
-        const newSudoku = sudoku_list[level][random];
-
-        return newSudoku;
+export const Sudoku = {
+    getBoard: async function(level) {
+        await Board.getData(level).then(() => {
+            return Board;
+        })
     }
 }
